@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "ab1a14ab-1b3e-4094-b7c6-be50453c846d",
+		"name": "demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhdG8iLCJleHAiOjQ3OTY2MzY1OTYsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.Cg65Le1EDgEMYvVSg5fXzYj0sVg_HWIj5w_ANaudKpE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"ato1\",\n    \"pass\": \"pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/demo/accounts/v1.0/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"demo",
+						"accounts",
+						"v1.0",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhdG8iLCJleHAiOjQ3OTY2MzY1OTYsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.Cg65Le1EDgEMYvVSg5fXzYj0sVg_HWIj5w_ANaudKpE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/demo/accounts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"demo",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhdG8iLCJleHAiOjE2NDMwNDQxNDcsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.xfZ0HXXCOUY2Kdd2QBUyEiKtkHbtRGayjTwViwJdl_g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/demo/accounts/v1.0/delete?userId=ato",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"demo",
+						"accounts",
+						"v1.0",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "ato"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhdG8iLCJleHAiOjQ3OTY2MzY1OTYsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.Cg65Le1EDgEMYvVSg5fXzYj0sVg_HWIj5w_ANaudKpE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": \"ato\",\n    \"pass\": \"pass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/demo/accounts/v1.0/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"demo",
+						"accounts",
+						"v1.0",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
