@@ -22,14 +22,21 @@ func CustomHTTPError(ctx context.Context, _ *runtime.ServeMux, marshaler runtime
 	var desc string
 
 	w.Header().Set("Content-Type", marshaler.ContentType())
+
 	if s, ok := status.FromError(ierr); ok {
+		w.Header().Set("Channel-Context", s.Message())
+
 		w.WriteHeader(runtime.HTTPStatusFromCode(s.Code()))
-		desc = s.Message()
+
+		// desc = s.Message()
+		desc = s.Code().String()
 	} else {
 		w.WriteHeader(runtime.HTTPStatusFromCode(codes.Unknown))
 		desc = ierr.Error()
 	}
+
 	b := new(Response)
+
 	err := json.Unmarshal([]byte(desc), b)
 	if err != nil {
 		w.Write([]byte(codes.InvalidArgument.String()))
@@ -53,10 +60,10 @@ func FormatError(c codes.Code, params ...string) error {
 	}
 
 	buf, err := json.Marshal(errRes)
-
 	if err != nil {
 		return status.Errorf(c, codes.Internal.String())
 	}
+
 	return status.Errorf(c, string(buf))
 }
 
