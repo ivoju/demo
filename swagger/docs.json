@@ -1,0 +1,233 @@
+{
+  "swagger": "2.0",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/demo/accounts": {
+      "get": {
+        "operationId": "AccountsService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        }
+      }
+    },
+    "/api/demo/accounts/v1.0/delete": {
+      "delete": {
+        "operationId": "AccountsService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pass",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/api/demo/accounts/v1.0/login": {
+      "post": {
+        "operationId": "AccountsService_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/accountsRequest"
+            }
+          }
+        ]
+      }
+    },
+    "/api/demo/accounts/v1.0/register": {
+      "post": {
+        "operationId": "AccountsService_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/accountsRequest"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "accountsData": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "boolean"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "creId": {
+          "type": "string"
+        },
+        "creTime": {
+          "type": "string"
+        },
+        "modId": {
+          "type": "string"
+        },
+        "modTime": {
+          "type": "string"
+        }
+      }
+    },
+    "accountsRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "pass": {
+          "type": "string"
+        }
+      },
+      "description": "Request is the response for accounts service."
+    },
+    "accountsResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "respCode": {
+          "type": "string"
+        },
+        "respDesc": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/accountsData"
+          }
+        },
+        "token": {
+          "$ref": "#/definitions/accountsToken"
+        }
+      },
+      "description": "Response is the response for accounts service."
+    },
+    "accountsToken": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "access": {
+          "type": "string"
+        },
+        "expPeriode": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

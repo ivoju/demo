@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package api.demo.v1_0.accounts;
+
+option go_package = "github.com/demo/proto/v1.0/accounts";
+
+import "lib/google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// Request is the response for accounts service.
+message Request {
+    string userId                    = 1;
+    string pass                     = 2;
+}
+
+message Data {
+    string userId                    = 1;
+    bool delFlag                     = 2;
+    string desc                     = 3;
+    string creId                     = 4;
+    string creTime                     = 5;
+    string modId                     = 6;
+    string modTime                     = 7;
+}
+
+message Token {
+    string type       = 1;
+	string access     = 2;
+	uint32 expPeriode = 3;
+}
+
+// Response is the response for accounts service.
+message Response {
+    bool success                    = 1;
+    string respCode                 = 2;
+    string respDesc                 = 3;
+    repeated Data data              = 4;
+    Token token                     = 5;
+}
+
+// accountsServices provides utility methods for the API.
+service AccountsService {
+    rpc Get(google.protobuf.Empty) returns (Response) {
+        option (google.api.http) = {
+            get  : "/api/demo/accounts"
+        };
+    }
+
+    rpc Register(Request) returns (Response) {
+        option (google.api.http) = {
+            post  : "/api/demo/accounts/v1.0/register"
+            body: "*"
+        };
+    }
+
+    rpc Login(Request) returns (Response) {
+        option (google.api.http) = {
+            post  : "/api/demo/accounts/v1.0/login"
+            body: "*"
+        };
+    }
+
+    rpc Delete(Request) returns (Response) {
+        option (google.api.http) = {
+            delete  : "/api/demo/accounts/v1.0/delete"
+        };
+    }
+}
