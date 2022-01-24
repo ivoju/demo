@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package api.demo.v1_0.health;
+
+option go_package = "github.com/demo/proto/v1.0/health";
+
+import "lib/google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+// Response is the response for health service.
+message Response {
+    bool success                    = 1;
+    string respCode                 = 2;
+    string respDesc                 = 3;
+}
+
+// healthServices provides utility methods for the API.
+service HealthService {
+    rpc Get(google.protobuf.Empty) returns (Response) {
+        option (google.api.http) = {
+            get  : "/api/demo/health"
+        };
+    }
+}

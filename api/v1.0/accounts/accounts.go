@@ -1,8 +1,6 @@
 package accounts
 
 import (
-	"fmt"
-
 	"github.com/demo/config"
 	"github.com/demo/pkg/v1.0/utils/errors"
 	actpb "github.com/demo/proto/v1.0/accounts"
@@ -15,7 +13,7 @@ type Method int
 
 const (
 	// List of different Methods
-	Get Method = iota
+	Inquiry Method = iota
 	Register
 	Login
 	Delete
@@ -37,26 +35,14 @@ func New(config *config.Config, logger *logrus.Logger) *Server {
 
 // isValidRequest validates the status request
 func isValidRequest(m Method, req *actpb.Request) error {
-	errmsg := "invalid request: %s"
-
 	switch m {
 	case Register:
-		if req.GetUserId() == "" {
-			return errors.FormatError(codes.InvalidArgument, "102", fmt.Sprintf(errmsg, "missing userId"))
-		}
 		if req.GetPass() == "" {
-			return errors.FormatError(codes.InvalidArgument, "102", fmt.Sprintf(errmsg, "missing pass"))
+			return errors.FormatError(codes.InvalidArgument, "1003", "invalid request: missing pass")
 		}
 	case Login:
-		if req.GetUserId() == "" {
-			return errors.FormatError(codes.InvalidArgument, "102", fmt.Sprintf(errmsg, "missing userId"))
-		}
 		if req.GetPass() == "" {
-			return errors.FormatError(codes.InvalidArgument, "102", fmt.Sprintf(errmsg, "missing pass"))
-		}
-	case Delete:
-		if req.GetUserId() == "" {
-			return errors.FormatError(codes.InvalidArgument, "102", fmt.Sprintf(errmsg, "missing userId"))
+			return errors.FormatError(codes.InvalidArgument, "1003", "invalid request: missing pass")
 		}
 	}
 

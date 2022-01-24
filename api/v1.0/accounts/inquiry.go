@@ -6,15 +6,22 @@ import (
 	pg "github.com/demo/pkg/v1.0/postgres"
 	"github.com/demo/pkg/v1.0/utils/errors"
 	actpb "github.com/demo/proto/v1.0/accounts"
-	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc/codes"
 )
 
 // ProcessController acts as the main entry point for this get service
-func (s *Server) Get(ctx context.Context, req *empty.Empty) (*actpb.Response, error) {
-	rows, err := s.config.PgConn.CustomAccountsSelect(&pg.CustomAccounts{})
+func (s *Server) Inquiry(ctx context.Context, req *actpb.Request) (*actpb.Response, error) {
+	err := isValidRequest(Inquiry, req)
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "103", err.Error())
+		s.logger.Errorf("[ACCOUNT][INQUIRY] ERROR %v", err)
+		return nil, err
+	}
+
+	rows, err := s.config.PgConn.CustomAccountsSelect(&pg.CustomAccounts{
+		UserId: req.GetUserId(),
+	})
+	if err != nil {
+		return nil, errors.FormatError(codes.InvalidArgument, "1004", err.Error())
 	}
 
 	var data []*actpb.Data
@@ -31,11 +38,11 @@ func (s *Server) Get(ctx context.Context, req *empty.Empty) (*actpb.Response, er
 		})
 	}
 
-	s.logger.Infof("[ACCOUNT][GET] SUCCESS")
+	s.logger.Infof("[ACCOUNT][INQUIRY] SUCCESS")
 
 	return &actpb.Response{
 		Success:  true,
-		RespCode: "000",
+		RespCode: "0000",
 		RespDesc: "Success",
 		Data:     data,
 	}, nil

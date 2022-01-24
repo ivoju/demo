@@ -40,12 +40,6 @@ message Response {
 
 // accountsServices provides utility methods for the API.
 service AccountsService {
-    rpc Get(google.protobuf.Empty) returns (Response) {
-        option (google.api.http) = {
-            get  : "/api/demo/accounts"
-        };
-    }
-
     rpc Register(Request) returns (Response) {
         option (google.api.http) = {
             post  : "/api/demo/accounts/v1.0/register"
@@ -57,6 +51,12 @@ service AccountsService {
         option (google.api.http) = {
             post  : "/api/demo/accounts/v1.0/login"
             body: "*"
+        };
+    }
+
+    rpc Inquiry(Request) returns (Response) {
+        option (google.api.http) = {
+            get  : "/api/demo/accounts/v1.0/inquiry"
         };
     }
 

@@ -12,14 +12,10 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-type ErrorResponse struct {
+type Response struct {
 	RespCode string `json:"respCode,omitempty"`
 	RespDesc string `json:"respDesc,omitempty"`
 }
-
-const (
-	InternalServerError = `Internal Server Error`
-)
 
 // CustomHTTPError is the custom http error handler for grpc gateway.
 func CustomHTTPError(ctx context.Context, _ *runtime.ServeMux, marshaler runtime.Marshaler, w http.ResponseWriter, _ *http.Request, ierr error) {
@@ -33,14 +29,14 @@ func CustomHTTPError(ctx context.Context, _ *runtime.ServeMux, marshaler runtime
 		w.WriteHeader(runtime.HTTPStatusFromCode(codes.Unknown))
 		desc = ierr.Error()
 	}
-	b := new(ErrorResponse)
+	b := new(Response)
 	err := json.Unmarshal([]byte(desc), b)
 	if err != nil {
-		w.Write([]byte(InternalServerError))
+		w.Write([]byte(codes.InvalidArgument.String()))
 	} else {
 		err = json.NewEncoder(w).Encode(b)
 		if err != nil {
-			w.Write([]byte(InternalServerError))
+			w.Write([]byte(codes.InvalidArgument.String()))
 		}
 	}
 }
@@ -48,10 +44,10 @@ func CustomHTTPError(ctx context.Context, _ *runtime.ServeMux, marshaler runtime
 // FormatError is the exposed function for generating errors.
 func FormatError(c codes.Code, params ...string) error {
 	if len(params) != 2 {
-		return status.Errorf(c, InternalServerError)
+		return status.Errorf(c, codes.Internal.String())
 	}
 
-	errRes := &ErrorResponse{
+	errRes := &Response{
 		RespCode: params[0],
 		RespDesc: params[1],
 	}
@@ -59,7 +55,7 @@ func FormatError(c codes.Code, params ...string) error {
 	buf, err := json.Marshal(errRes)
 
 	if err != nil {
-		return status.Errorf(c, InternalServerError)
+		return status.Errorf(c, codes.Internal.String())
 	}
 	return status.Errorf(c, string(buf))
 }

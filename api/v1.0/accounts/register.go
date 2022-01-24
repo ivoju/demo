@@ -20,7 +20,7 @@ func (s *Server) Register(ctx context.Context, req *actpb.Request) (*actpb.Respo
 
 	passHashed, err := bcrypt.GenerateFromPassword([]byte(req.GetPass()), bcrypt.MinCost)
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "103", err.Error())
+		return nil, errors.FormatError(codes.InvalidArgument, "1004", err.Error())
 	}
 
 	_, err = s.config.PgConn.CustomAccountsInsert(&pg.CustomAccounts{
@@ -30,14 +30,14 @@ func (s *Server) Register(ctx context.Context, req *actpb.Request) (*actpb.Respo
 		ModId:  req.GetUserId(),
 	})
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "104", err.Error())
+		return nil, errors.FormatError(codes.InvalidArgument, "1005", err.Error())
 	}
 
 	s.logger.Infof("[ACCOUNT][REGISTER] SUCCESS")
 
 	return &actpb.Response{
 		Success:  true,
-		RespCode: "000",
+		RespCode: "0000",
 		RespDesc: "Success",
 	}, nil
 

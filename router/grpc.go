@@ -7,8 +7,10 @@ import (
 	"time"
 
 	"github.com/demo/api/v1.0/accounts"
+	"github.com/demo/api/v1.0/health"
 	"github.com/demo/config"
 	actpb "github.com/demo/proto/v1.0/accounts"
+	hlpb "github.com/demo/proto/v1.0/health"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -45,6 +47,7 @@ func NewGRPCServer(config *config.Config, logger *logrus.Logger) error {
 		)))
 
 	actpb.RegisterAccountsServiceServer(grpcServer, accounts.New(config, logger))
+	hlpb.RegisterHealthServiceServer(grpcServer, health.New(config, logger))
 
 	// add reflection service
 	reflection.Register(grpcServer)

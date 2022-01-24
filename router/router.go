@@ -27,18 +27,18 @@ func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServe
 	// get jwt is enable config
 	isJwtEnable, err := strconv.ParseBool(env.GetKey("jwt.isenable"))
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "100", err.Error())
+		return nil, errors.FormatError(codes.InvalidArgument, "1000", err.Error())
 	}
 
 	if isJwtEnable {
 		// read header from incoming request
 		headers, ok := metadata.FromIncomingContext(ctx)
 		if !ok {
-			return nil, errors.FormatError(codes.InvalidArgument, "101", "failed to read header from incoming request")
+			return nil, errors.FormatError(codes.InvalidArgument, "1001", "failed to read header from incoming request")
 		}
 
 		if len(headers.Get("Authorization")) < 1 || headers.Get("Authorization")[0] == "" {
-			return nil, errors.FormatError(codes.InvalidArgument, "102", "invalid header: missing Authorization")
+			return nil, errors.FormatError(codes.InvalidArgument, "1002", "invalid header: missing Authorization")
 		}
 
 		// claim jwt token
@@ -51,11 +51,15 @@ func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServe
 
 		r := structs.Map(req)
 
-		if r["UserId"] != nil {
-			if !(strings.Contains(info.FullMethod, "/Login") || strings.Contains(info.FullMethod, "/Register")) {
-				if r["UserId"] != claims["userId"] {
-					return nil, errors.FormatError(codes.Unauthenticated, "401", "The user is not authorized")
-				}
+		if !strings.Contains(info.FullMethod, "health") {
+			if r["UserId"] == "" {
+				return nil, errors.FormatError(codes.InvalidArgument, "1003", "invalid request: missing userId")
+			}
+		}
+
+		if !(strings.Contains(info.FullMethod, "/Login") || strings.Contains(info.FullMethod, "/Register")) {
+			if r["UserId"] != claims["userId"] {
+				return nil, errors.FormatError(codes.Unauthenticated, "401", "The user is not authorized")
 			}
 		}
 

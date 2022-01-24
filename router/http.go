@@ -8,6 +8,7 @@ import (
 	"github.com/demo/config"
 	"github.com/demo/pkg/v1.0/utils/errors"
 	actpb "github.com/demo/proto/v1.0/accounts"
+	hlpb "github.com/demo/proto/v1.0/health"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
@@ -37,6 +38,7 @@ func NewHTTPServer(config *config.Config, logger *logrus.Logger) error {
 	for _, f := range []func(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error{
 		// register grpc service handler
 		actpb.RegisterAccountsServiceHandler,
+		hlpb.RegisterHealthServiceHandler,
 	} {
 		if err = f(ctx, rmux, conn); err != nil {
 			log.Fatal(err)

@@ -7,9 +7,9 @@
     "application/json"
   ],
   "paths": {
-    "/api/demo/accounts": {
-      "get": {
-        "operationId": "AccountsService_Get",
+    "/api/demo/accounts/v1.0/delete": {
+      "delete": {
+        "operationId": "AccountsService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -23,12 +23,26 @@
               "$ref": "#/definitions/runtimeError"
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pass",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ]
       }
     },
-    "/api/demo/accounts/v1.0/delete": {
-      "delete": {
-        "operationId": "AccountsService_Delete",
+    "/api/demo/accounts/v1.0/inquiry": {
+      "get": {
+        "operationId": "AccountsService_Inquiry",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -115,6 +129,25 @@
             }
           }
         ]
+      }
+    },
+    "/api/demo/health": {
+      "get": {
+        "operationId": "HealthService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/healthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        }
       }
     }
   },
@@ -228,6 +261,21 @@
           }
         }
       }
+    },
+    "healthResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "respCode": {
+          "type": "string"
+        },
+        "respDesc": {
+          "type": "string"
+        }
+      },
+      "description": "Response is the response for health service."
     }
   }
 }

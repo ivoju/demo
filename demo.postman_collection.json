@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Register",
+			"name": "[Accounts] Register",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -22,7 +22,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": \"ato1\",\n    \"pass\": \"pass\"\n}",
+					"raw": "{\n    \"userId\": \"ato2\",\n    \"pass\": \"pass\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -46,14 +46,14 @@
 			"response": []
 		},
 		{
-			"name": "Get Account",
+			"name": "[Accounts] Inquiry",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhdG8iLCJleHAiOjQ3OTY2MzY1OTYsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.Cg65Le1EDgEMYvVSg5fXzYj0sVg_HWIj5w_ANaudKpE",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhdG8yIiwiZXhwIjoxNjQzMDQ3OTEyLCJpc3MiOiJCYW5rIFJheWEgSW5kb25lc2lhIn0.kdLtXLAjPslK5u0QYqGYnxvtqZ-aTVQpIN2_JCUPPJU",
 							"type": "string"
 						}
 					]
@@ -61,28 +61,36 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/demo/accounts",
+					"raw": "{{url}}/api/demo/accounts/v1.0/inquiry?userId=ato2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
 						"demo",
-						"accounts"
+						"accounts",
+						"v1.0",
+						"inquiry"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "ato2"
+						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete",
+			"name": "[Accounts] Delete",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhdG8iLCJleHAiOjE2NDMwNDQxNDcsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.xfZ0HXXCOUY2Kdd2QBUyEiKtkHbtRGayjTwViwJdl_g",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhdG8xIiwiZXhwIjoxNjQzMDQ3ODYyLCJpc3MiOiJCYW5rIFJheWEgSW5kb25lc2lhIn0.JTb6KMIXehiVgzGARj-Yhr65OjqWp5Z0Hno2rVGdTyw",
 							"type": "string"
 						}
 					]
@@ -90,7 +98,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/api/demo/accounts/v1.0/delete?userId=ato",
+					"raw": "{{url}}/api/demo/accounts/v1.0/delete?userId=ato1",
 					"host": [
 						"{{url}}"
 					],
@@ -104,7 +112,7 @@
 					"query": [
 						{
 							"key": "userId",
-							"value": "ato"
+							"value": "ato1"
 						}
 					]
 				}
@@ -112,7 +120,7 @@
 			"response": []
 		},
 		{
-			"name": "Login",
+			"name": "[Accounts] Login",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -128,7 +136,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": \"ato\",\n    \"pass\": \"pass\"\n}",
+					"raw": "{\n    \"userId\": \"ato2\",\n    \"pass\": \"pass\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,6 +154,35 @@
 						"accounts",
 						"v1.0",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Health] Get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhdG8iLCJleHAiOjQ3OTY2MzY1OTYsImlzcyI6IkJhbmsgUmF5YSBJbmRvbmVzaWEifQ.Cg65Le1EDgEMYvVSg5fXzYj0sVg_HWIj5w_ANaudKpE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/demo/health",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"demo",
+						"health"
 					]
 				}
 			},

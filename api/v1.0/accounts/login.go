@@ -23,26 +23,26 @@ func (s *Server) Login(ctx context.Context, req *actpb.Request) (*actpb.Response
 		UserId: req.GetUserId(),
 	})
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "103", err.Error())
+		return nil, errors.FormatError(codes.InvalidArgument, "1004", err.Error())
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(rows[0].Pass), []byte(req.GetPass()))
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "104", err.Error())
+		return nil, errors.FormatError(codes.InvalidArgument, "1005", err.Error())
 	}
 
 	jwtd := jwt.New(s.config.Env)
 
 	token, err := jwtd.GenerateToken(req.GetUserId())
 	if err != nil {
-		return nil, errors.FormatError(codes.InvalidArgument, "105", err.Error())
+		return nil, errors.FormatError(codes.InvalidArgument, "1006", err.Error())
 	}
 
 	s.logger.Infof("[ACCOUNT][LOGIN] SUCCESS")
 
 	return &actpb.Response{
 		Success:  true,
-		RespCode: "000",
+		RespCode: "0000",
 		RespDesc: "Success",
 		Token:    token,
 	}, nil
