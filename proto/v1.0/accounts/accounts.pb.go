@@ -14,7 +14,7 @@ import (
 	status "google.golang.org/grpc/status"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/emptypb"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -361,7 +361,7 @@ var file_accounts_proto_rawDesc = []byte{
 	0x61, 0x74, 0x61, 0x12, 0x33, 0x0a, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x18, 0x05, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x76, 0x31,
 	0x5f, 0x30, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2e, 0x54, 0x6f, 0x6b, 0x65,
-	0x6e, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x32, 0xef, 0x03, 0x0a, 0x0f, 0x41, 0x63, 0x63,
+	0x6e, 0x52, 0x05, 0x74, 0x6f, 0x6b, 0x65, 0x6e, 0x32, 0xdd, 0x04, 0x0a, 0x0f, 0x41, 0x63, 0x63,
 	0x6f, 0x75, 0x6e, 0x74, 0x73, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x7a, 0x0a, 0x08,
 	0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x12, 0x1f, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x64,
 	0x65, 0x6d, 0x6f, 0x2e, 0x76, 0x31, 0x5f, 0x30, 0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
@@ -392,10 +392,17 @@ var file_accounts_proto_rawDesc = []byte{
 	0x2e, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x2a, 0x1e, 0x2f, 0x61, 0x70, 0x69,
 	0x2f, 0x64, 0x65, 0x6d, 0x6f, 0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2f, 0x76,
-	0x31, 0x2e, 0x30, 0x2f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x42, 0x25, 0x5a, 0x23, 0x67, 0x69,
-	0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x65, 0x6d, 0x6f, 0x2f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x2f, 0x76, 0x31, 0x2e, 0x30, 0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x31, 0x2e, 0x30, 0x2f, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x12, 0x6c, 0x0a, 0x07, 0x47, 0x65,
+	0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x16, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x20, 0x2e,
+	0x61, 0x70, 0x69, 0x2e, 0x64, 0x65, 0x6d, 0x6f, 0x2e, 0x76, 0x31, 0x5f, 0x30, 0x2e, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x27, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x21, 0x12, 0x1f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x64, 0x65,
+	0x6d, 0x6f, 0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x2f, 0x76, 0x31, 0x2e, 0x30,
+	0x2f, 0x67, 0x65, 0x74, 0x6c, 0x69, 0x73, 0x74, 0x42, 0x25, 0x5a, 0x23, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x64, 0x65, 0x6d, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2f, 0x76, 0x31, 0x2e, 0x30, 0x2f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -412,10 +419,11 @@ func file_accounts_proto_rawDescGZIP() []byte {
 
 var file_accounts_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_accounts_proto_goTypes = []interface{}{
-	(*Request)(nil),  // 0: api.demo.v1_0.accounts.Request
-	(*Data)(nil),     // 1: api.demo.v1_0.accounts.Data
-	(*Token)(nil),    // 2: api.demo.v1_0.accounts.Token
-	(*Response)(nil), // 3: api.demo.v1_0.accounts.Response
+	(*Request)(nil),       // 0: api.demo.v1_0.accounts.Request
+	(*Data)(nil),          // 1: api.demo.v1_0.accounts.Data
+	(*Token)(nil),         // 2: api.demo.v1_0.accounts.Token
+	(*Response)(nil),      // 3: api.demo.v1_0.accounts.Response
+	(*emptypb.Empty)(nil), // 4: google.protobuf.Empty
 }
 var file_accounts_proto_depIdxs = []int32{
 	1, // 0: api.demo.v1_0.accounts.Response.data:type_name -> api.demo.v1_0.accounts.Data
@@ -424,12 +432,14 @@ var file_accounts_proto_depIdxs = []int32{
 	0, // 3: api.demo.v1_0.accounts.AccountsService.Login:input_type -> api.demo.v1_0.accounts.Request
 	0, // 4: api.demo.v1_0.accounts.AccountsService.Inquiry:input_type -> api.demo.v1_0.accounts.Request
 	0, // 5: api.demo.v1_0.accounts.AccountsService.Delete:input_type -> api.demo.v1_0.accounts.Request
-	3, // 6: api.demo.v1_0.accounts.AccountsService.Register:output_type -> api.demo.v1_0.accounts.Response
-	3, // 7: api.demo.v1_0.accounts.AccountsService.Login:output_type -> api.demo.v1_0.accounts.Response
-	3, // 8: api.demo.v1_0.accounts.AccountsService.Inquiry:output_type -> api.demo.v1_0.accounts.Response
-	3, // 9: api.demo.v1_0.accounts.AccountsService.Delete:output_type -> api.demo.v1_0.accounts.Response
-	6, // [6:10] is the sub-list for method output_type
-	2, // [2:6] is the sub-list for method input_type
+	4, // 6: api.demo.v1_0.accounts.AccountsService.GetList:input_type -> google.protobuf.Empty
+	3, // 7: api.demo.v1_0.accounts.AccountsService.Register:output_type -> api.demo.v1_0.accounts.Response
+	3, // 8: api.demo.v1_0.accounts.AccountsService.Login:output_type -> api.demo.v1_0.accounts.Response
+	3, // 9: api.demo.v1_0.accounts.AccountsService.Inquiry:output_type -> api.demo.v1_0.accounts.Response
+	3, // 10: api.demo.v1_0.accounts.AccountsService.Delete:output_type -> api.demo.v1_0.accounts.Response
+	3, // 11: api.demo.v1_0.accounts.AccountsService.GetList:output_type -> api.demo.v1_0.accounts.Response
+	7, // [7:12] is the sub-list for method output_type
+	2, // [2:7] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name
@@ -526,6 +536,7 @@ type AccountsServiceClient interface {
 	Login(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
 	Inquiry(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
 	Delete(ctx context.Context, in *Request, opts ...grpc.CallOption) (*Response, error)
+	GetList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Response, error)
 }
 
 type accountsServiceClient struct {
@@ -572,12 +583,22 @@ func (c *accountsServiceClient) Delete(ctx context.Context, in *Request, opts ..
 	return out, nil
 }
 
+func (c *accountsServiceClient) GetList(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Response, error) {
+	out := new(Response)
+	err := c.cc.Invoke(ctx, "/api.demo.v1_0.accounts.AccountsService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountsServiceServer is the server API for AccountsService service.
 type AccountsServiceServer interface {
 	Register(context.Context, *Request) (*Response, error)
 	Login(context.Context, *Request) (*Response, error)
 	Inquiry(context.Context, *Request) (*Response, error)
 	Delete(context.Context, *Request) (*Response, error)
+	GetList(context.Context, *emptypb.Empty) (*Response, error)
 }
 
 // UnimplementedAccountsServiceServer can be embedded to have forward compatible implementations.
@@ -595,6 +616,9 @@ func (*UnimplementedAccountsServiceServer) Inquiry(context.Context, *Request) (*
 }
 func (*UnimplementedAccountsServiceServer) Delete(context.Context, *Request) (*Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedAccountsServiceServer) GetList(context.Context, *emptypb.Empty) (*Response, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
 }
 
 func RegisterAccountsServiceServer(s *grpc.Server, srv AccountsServiceServer) {
@@ -673,6 +697,24 @@ func _AccountsService_Delete_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountsService_GetList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountsServiceServer).GetList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/api.demo.v1_0.accounts.AccountsService/GetList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountsServiceServer).GetList(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _AccountsService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "api.demo.v1_0.accounts.AccountsService",
 	HandlerType: (*AccountsServiceServer)(nil),
@@ -692,6 +734,10 @@ var _AccountsService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Delete",
 			Handler:    _AccountsService_Delete_Handler,
+		},
+		{
+			MethodName: "GetList",
+			Handler:    _AccountsService_GetList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

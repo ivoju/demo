@@ -18,6 +18,15 @@ import (
 )
 
 func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+	// validate userId
+	r := structs.Map(req)
+
+	if !strings.Contains(info.FullMethod, "health") {
+		if r["UserId"] == "" {
+			return nil, errors.FormatError(codes.InvalidArgument, "1003", "invalid request: missing userId")
+		}
+	}
+
 	// create config and logger
 	env, err := envcfg.New()
 	if err != nil {
@@ -50,12 +59,6 @@ func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServe
 		}
 
 		r := structs.Map(req)
-
-		if !strings.Contains(info.FullMethod, "health") {
-			if r["UserId"] == "" {
-				return nil, errors.FormatError(codes.InvalidArgument, "1003", "invalid request: missing userId")
-			}
-		}
 
 		if !(strings.Contains(info.FullMethod, "/Login") || strings.Contains(info.FullMethod, "/Register")) {
 			if r["UserId"] != claims["userId"] {

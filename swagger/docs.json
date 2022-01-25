@@ -40,6 +40,25 @@
         ]
       }
     },
+    "/api/demo/accounts/v1.0/getlist": {
+      "get": {
+        "operationId": "AccountsService_GetList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/accountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        }
+      }
+    },
     "/api/demo/accounts/v1.0/inquiry": {
       "get": {
         "operationId": "AccountsService_Inquiry",

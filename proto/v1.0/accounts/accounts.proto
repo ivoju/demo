@@ -65,4 +65,10 @@ service AccountsService {
             delete  : "/api/demo/accounts/v1.0/delete"
         };
     }
+
+    rpc GetList(google.protobuf.Empty) returns (Response) {
+        option (google.api.http) = {
+            get  : "/api/demo/accounts/v1.0/getlist"
+        };
+    }
 }

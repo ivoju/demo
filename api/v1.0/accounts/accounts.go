@@ -17,6 +17,7 @@ const (
 	Register
 	Login
 	Delete
+	GetList
 )
 
 // Server is the server object for this api service.
